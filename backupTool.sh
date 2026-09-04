@@ -19,6 +19,7 @@ excludes=(
   --exclude='Android'
   --exclude='AndroidStudioProjects'
   --exclude='Games'
+  --exclude='virtual/AI'
 )
 
 case $1 in

@@ -1,22 +1,25 @@
 #!/bin/python3
 
-from pyfzf import FzfPrompt
+import os
 import pathlib
 import subprocess
-import os
+import sys
 
+from pyfzf import FzfPrompt
 
 home = pathlib.Path.home()
 
 # Python projects
 python_projects = {
-    "AlgoVictory": f'{home}/repos/divinatio',
     "mySite": f'{home}/repos/mysite/',
 }
 
 # other projects
 other = {
+    'ViveNotes': f'{home}/AndroidStudioProjects/viveNotes',
+    'viveHub': f'{home}/repos/viveHub',
     "gobook": f'{home}/golang/book/',
+    "roaring vengeance": f'{home}/repos/roaring-vengeance/',
     'Stims': f'{home}/AndroidStudioProjects/stims/',
     'Datastructures': f'{home}/golang/datastructures/',
 }
@@ -26,13 +29,13 @@ def main():
     fzf = FzfPrompt()
     choices = {}
 
-    for key in python_projects.keys():
+    for key in python_projects:
         if "python" not in choices:
             choices["python"] = []
 
         choices["python"].append(key)
 
-    for key in other.keys():
+    for key in other:
         if "go" not in choices:
             choices["go"] = []
 
@@ -45,7 +48,7 @@ def main():
 
     if not selection:
         print('Nothing selected')
-        exit(0)
+        sys.exit(0)
 
     selected: str = selection[0]
     print("selected:", selected)
@@ -53,7 +56,7 @@ def main():
     # Handle selection
 
     # UV
-    if selected in python_projects.keys():
+    if selected in python_projects:
         project_path = python_projects[selected]
         print("project_path:", project_path)
 
@@ -63,31 +66,24 @@ def main():
 
         tmux_cmd = ["tmux", "new", '-d', "-s", selected, "zsh", "-c", inner_cmd]
 
-        subprocess.run(tmux_cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.run(tmux_cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
 
         esac(selected)
 
-    elif selected in other.keys():
+    elif selected in other:
         project_path = other[selected]
 
         os.chdir(project_path)
-        subprocess.run(["tmux", "new", "-s", selected])
+        subprocess.run(["tmux", "new", "-s", selected], check=False)
 
 
 def esac(selected: str):
     if 'esac.sh' in os.listdir():
         other_commands = f"tmux send-keys -t {selected} 'sh ./esac.sh' C-m"
-        subprocess.run(
-            other_commands,
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-            shell=True,
-        )
+        subprocess.run(other_commands, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, shell=True, check=False)
 
     subprocess.run(
-        ['tmux', 'attach', '-t', selected],
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
+        ['tmux', 'attach', '-t', selected], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False
     )
 
 
