@@ -14,11 +14,12 @@ desktopList=(
     "$HOME/.config/ranger/"         # Ranger config
     "$HOME/.config/rofi/"           # Rofi config
     "$HOME/.config/fastfetch/"      # fastfetch
-    "$HOME/.config/tmux/"           #tmux
+    "$HOME/.config/tmux/"           # tmux
     "$HOME/.config/wezterm/"        # wezterm
     "$HOME/.config/ruff/"           # ruff
     "$HOME/.config/environment.d/"  # Auth
     "$HOME/.config/quickshell/"     # quickshell
+    "$HOME/.config/yazi/"           # yazi
 )
 
 homeList=(
