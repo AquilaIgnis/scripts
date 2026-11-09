@@ -20,6 +20,7 @@ desktopList=(
     "$HOME/.config/environment.d/"  # Auth
     "$HOME/.config/quickshell/"     # quickshell
     "$HOME/.config/yazi/"           # yazi
+    "$HOME/.config/git/"            # git
 )
 
 homeList=(

@@ -10,16 +10,17 @@ from pyfzf import FzfPrompt
 home = pathlib.Path.home()
 
 # Python projects
-python_projects = {
-    "mySite": f'{home}/repos/mysite/',
-}
+python_projects = {}
 
 # other projects
 other = {
     'ViveNotes': f'{home}/AndroidStudioProjects/viveNotes',
+    'multiplataform-vive': f'{home}/repos/viveHub/multiplataform-vive',
+    'vivenotes.net': f'{home}/repos/viveHub/vivenotes.net',
+    'cloud-sync': f'{home}/repos/viveHub/cloudServer-viveNotes/',
+    'ByteInk': f'{home}/repos/viveHub/byteink/',
     'viveHub': f'{home}/repos/viveHub',
     "gobook": f'{home}/golang/book/',
-    "roaring vengeance": f'{home}/repos/roaring-vengeance/',
     'Stims': f'{home}/AndroidStudioProjects/stims/',
     'Datastructures': f'{home}/golang/datastructures/',
 }
